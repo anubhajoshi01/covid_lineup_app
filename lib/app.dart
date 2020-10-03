@@ -41,7 +41,7 @@ class MyAppState extends State<MyApp> {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: /*StoreInfoPage(StoresStored.storesList[0])*/StoreListPage(),
+      home: StoreInfoPage(StoresStored.storesList[0]),
     );
   }
 }
