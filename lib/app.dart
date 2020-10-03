@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon_prep/screens/my_appliance_page.dart';
+import 'package:hackathon_prep/screens/store_info_page.dart';
+import 'package:hackathon_prep/screens/store_list_screen.dart';
+import 'package:hackathon_prep/stores_stored.dart';
 
 
 class MyApp extends StatefulWidget{
@@ -39,7 +41,7 @@ class MyAppState extends State<MyApp> {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-
+      home: /*StoreInfoPage(StoresStored.storesList[0])*/StoreListPage(),
     );
   }
 }
