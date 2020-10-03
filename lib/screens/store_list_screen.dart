@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon_prep/screens/store_info_page.dart';
+import 'package:hackathon_prep/screens/store_info_page_admin.dart';
 import 'package:hackathon_prep/screens/store_info_page_user.dart';
 import 'package:hackathon_prep/stores_stored.dart';
 import '../stores_stored.dart';

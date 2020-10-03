@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_prep/local_user_type_db.dart';
 import 'package:hackathon_prep/screens/continue_as_page.dart';
-import 'package:hackathon_prep/screens/store_info_page.dart';
+import 'package:hackathon_prep/screens/store_info_page_admin.dart';
 import 'package:hackathon_prep/screens/store_list_screen.dart';
 import 'package:hackathon_prep/stores_stored.dart';
 

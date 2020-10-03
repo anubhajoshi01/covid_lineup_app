@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:hackathon_prep/queue_db.dart';
 import 'models/store.dart';
 
 class StoresStored{
@@ -9,6 +10,7 @@ class StoresStored{
   static List<Store> storesList = new List();
   static Map<String, Store> storeFromAddressMap = new Map();
   static String adminPassword;
+  static Map<int, int> queueNumsMap = new Map();
 
   static Future<void> initDb() async{
     final firestoreInstance = Firestore.instance;
@@ -32,6 +34,13 @@ class StoresStored{
     DocumentSnapshot snapshot = await firestoreInstance.collection("adminPassword").document("password").get();
     adminPassword = snapshot.data["password"];
     print(adminPassword);
+
+    final db = QueueDb();
+    await db.initBox();
+
+    db.box.keys.forEach((element) async{
+      queueNumsMap[element] = await db.getQueueNum(element);
+    });
   }
 
   static int getNumInQueue(AsyncSnapshot snapshot, int storeId) {
