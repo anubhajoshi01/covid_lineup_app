@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_prep/screens/store_info_page.dart';
+import 'package:hackathon_prep/screens/store_info_page_user.dart';
 import 'package:hackathon_prep/stores_stored.dart';
 import '../stores_stored.dart';
 
 class StoreListPage extends StatelessWidget {
+
+  final bool isUser;
+
+  StoreListPage(this.isUser);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -29,7 +35,8 @@ class StoreListPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => StoreInfoPage(
+                                builder: (context) => (isUser) ? StoreInfoPageUser(
+                                    StoresStored.storesList[index]) : StoreInfoPageAdmin(
                                     StoresStored.storesList[index])));
                       },
                       title: Column(children: <Widget>[

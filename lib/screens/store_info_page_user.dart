@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_prep/models/store.dart';
 
-class StoreInfoPageAdmin extends StatelessWidget {
+class StoreInfoPageUser extends StatelessWidget {
   final Store store;
 
 
-  StoreInfoPageAdmin(this.store);
+  StoreInfoPageUser(this.store);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,7 @@ class StoreInfoPageAdmin extends StatelessWidget {
         body: StreamBuilder(
           stream: Firestore.instance.collection("Queue").snapshots(),
           builder: (context, snapshot){
+
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
