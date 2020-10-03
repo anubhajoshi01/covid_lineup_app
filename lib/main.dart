@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_prep/local_user_type_db.dart';
 import 'package:hackathon_prep/stores_stored.dart';
 
 import 'package:hive/hive.dart';
@@ -10,6 +11,7 @@ void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
   await StoresStored.initDb();
+  await Hive.initFlutter();
 
   runApp(MyApp());
 }
