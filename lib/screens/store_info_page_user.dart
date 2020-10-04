@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hackathon_prep/models/store.dart';
 import 'package:hackathon_prep/stores_stored.dart';
 
+import '../queue_db.dart';
+
 class StoreInfoPageUser extends StatefulWidget{
   final Store store;
 
@@ -69,7 +71,36 @@ class _StoreInfoPageUserState extends State<StoreInfoPageUser> {
                       ),
                     ),
                   ),
-                ],
+                  Column(
+                    children:<Widget>[
+                      Text('number being called ${StoresStored.getNumBeingCalled(snapshot, this.widget.store.id)}'),
+                      FlatButton(
+                        child:Text('book'),
+                        onPressed:() {
+                          StoresStored.incrementNumInQueue(snapshot, this.widget
+                              .store.id);
+                          int queueLength = StoresStored.getNumInQueue(
+                              snapshot, this.widget.store.id);
+                          final QueueDb db = new QueueDb();
+                          db.addStoreToQueue(this.widget.store.id,
+                              queueLength + 1);
+                          setState(() {
+                            queueNum = queueLength + 1;
+                          });
+                        },
+                      ),
+                      FlatButton(
+                        onPressed: (){
+                          StoresStored.decrementNumInQueue(snapshot,this.widget.store.id);
+                          final QueueDb db = new QueueDb();
+                          db.addStoreToQueue(this.widget.store.id, null);
+                        },
+                        child:Text('Cancel'),
+                      ),
+                      queueNum!=0&&queueNum!=null?Text('your number is $queueNum'):Text('There is no one in line'),
+                    ],
+                  ),
+                ]//widgets
               ),
             );
           },

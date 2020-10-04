@@ -64,7 +64,7 @@ class _ContinueAsPageState extends State<ContinueAsPage> {
 
   Widget _renderSubmitButton() {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 155.0, horizontal: 10.0),
+        padding: EdgeInsets.symmetric(vertical: 125.0, horizontal: 10.0),
         child: FlatButton(
           color: Colors.red,
           child: Text("Sign in as Admin"),
