@@ -53,6 +53,7 @@ class _ContinueAsPageState extends State<ContinueAsPage> {
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
         width: 300,
         child: TextField(
+          obscureText: true,
           keyboardType: TextInputType.text,
           onChanged: (input) {
             setState(() {

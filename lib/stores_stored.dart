@@ -21,11 +21,12 @@ class StoresStored {
         String address = data["Address"];
         String imageUrl = data["imageUrl"];
         String restrictions = data["restrictions"];
+        int occupancy = int.parse(data["occupancy"]);
 
-        storesMap[id] = new Store(id, address, imageUrl, name, restrictions);
-        storesList.add(new Store(id, address, imageUrl, name, restrictions));
+        storesMap[id] = new Store(id, address, imageUrl, name, restrictions, occupancy);
+        storesList.add(new Store(id, address, imageUrl, name, restrictions, occupancy));
         storeFromAddressMap[address] =
-            new Store(id, address, imageUrl, name, restrictions);
+            new Store(id, address, imageUrl, name, restrictions, occupancy);
 
         print(
             "id: $id, name:$name, address:$address, imageUrl:$imageUrl, restrictions:$restrictions");

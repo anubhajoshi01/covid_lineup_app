@@ -61,6 +61,7 @@ class StoreInfoPageAdmin extends StatelessWidget {
                       ),
                     ),
                   ),
+                 _showOccupancy()
                  /* Container(
                     padding: EdgeInsets.all(10),
                     child: Text(
@@ -187,6 +188,18 @@ class StoreInfoPageAdmin extends StatelessWidget {
           StoresStored.decrementNumBeingCalled(
               snapshot, this.store.id);
         });
+  }
+
+  Widget _showOccupancy() {
+    return Column(
+      children: [
+        Text("occupancy:", style: TextStyle(fontSize: 15.0)),
+        Text(
+          "${this.store.occupancy}",
+          style: TextStyle(fontSize: 20.0),
+        )
+      ],
+    );
   }
 
   Widget _getImage(String url, double height) {

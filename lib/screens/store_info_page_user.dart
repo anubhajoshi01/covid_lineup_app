@@ -75,6 +75,7 @@ class _StoreInfoPageUserState extends State<StoreInfoPageUser> {
                         ),
                       ),
                     ),
+                    _showOccupancy(),
                     (booking)
                         ? _renderBookButton(snapshot)
                         : _renderCancelButton(snapshot)
@@ -187,12 +188,24 @@ class _StoreInfoPageUserState extends State<StoreInfoPageUser> {
             db.addStoreToQueue(this.widget.store.id, null);
 
             setState(() {
-              queueNum -=1;
+              queueNum -= 1;
               booking = true;
             });
           },
           child: Text('Cancel'),
         ));
+  }
+
+  Widget _showOccupancy() {
+    return Column(
+      children: [
+        Text("occupancy:", style: TextStyle(fontSize: 15.0)),
+        Text(
+          "${this.widget.store.occupancy}",
+          style: TextStyle(fontSize: 20.0),
+        )
+      ],
+    );
   }
 
   Widget _getImage(String url, double height) {
