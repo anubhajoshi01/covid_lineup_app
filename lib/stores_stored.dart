@@ -59,6 +59,7 @@ class StoresStored {
   }
 
   static void incrementNumInQueue(AsyncSnapshot snapshot, int storeId) {
+    print(snapshot.data);
     DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
     documentSnapshot.reference.updateData({
       "numLinedUp": "${int.parse(documentSnapshot.data["numLinedUp"]) + 1}"
@@ -66,6 +67,7 @@ class StoresStored {
   }
 
   static void decrementNumInQueue(AsyncSnapshot snapshot, int storeId) {
+    print(snapshot.data);
     DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
     documentSnapshot.reference.updateData({
       "numLinedUp": "${int.parse(documentSnapshot.data["numLinedUp"]) - 1}"
@@ -73,6 +75,7 @@ class StoresStored {
   }
 
   static void incrementNumBeingCalled(AsyncSnapshot snapshot, int storeId) {
+    print(snapshot.data);
     DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
     documentSnapshot.reference.updateData({
       "numBeingCalled":
@@ -81,6 +84,7 @@ class StoresStored {
   }
 
   static void decrementNumBeingCalled(AsyncSnapshot snapshot, int storeId) {
+    print(snapshot.data);
     DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
     int numBeingCalled = int.parse(documentSnapshot.data["numBeingCalled"]) - 1;
     if (numBeingCalled > 0) {

@@ -187,6 +187,7 @@ class _StoreInfoPageUserState extends State<StoreInfoPageUser> {
             db.addStoreToQueue(this.widget.store.id, null);
 
             setState(() {
+              queueNum -=1;
               booking = true;
             });
           },
