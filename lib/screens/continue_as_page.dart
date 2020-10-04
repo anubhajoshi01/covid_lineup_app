@@ -19,23 +19,24 @@ class _ContinueAsPageState extends State<ContinueAsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Continue as Admin/User"),
-        centerTitle: true,
-        backgroundColor: Colors.red[700],
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            _renderLabel(),
-            _renderTextView(),
-            wrongPasswordText,
-            _renderSubmitButton(),
-            _renderUserButton()
-          ],
+        appBar: AppBar(
+          title: Text("Continue as Admin/User"),
+          centerTitle: true,
+          backgroundColor: Colors.red[700],
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: [
+                _renderLabel(),
+                _renderTextView(),
+                wrongPasswordText,
+                _renderSubmitButton(),
+                _renderUserButton()
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget _renderLabel() {
@@ -74,8 +75,10 @@ class _ContinueAsPageState extends State<ContinueAsPage> {
               String type = await db.getUserType();
               print(type);
               var isUser = (type == "user") ? true : false;
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => StoreListPage(isUser)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => StoreListPage(isUser)));
             } else {
               setState(() {
                 wrongPasswordText = Text(
@@ -97,8 +100,8 @@ class _ContinueAsPageState extends State<ContinueAsPage> {
         String type = await db.getUserType();
         print(type);
         var isUser = (type == "user") ? true : false;
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => StoreListPage(isUser)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => StoreListPage(isUser)));
       },
     );
   }

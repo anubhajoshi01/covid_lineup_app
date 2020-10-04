@@ -44,32 +44,33 @@ class StoresStored{
   }
 
   static int getNumInQueue(AsyncSnapshot snapshot, int storeId) {
-    DocumentSnapshot documentSnapshot = snapshot.data.document("$storeId").get();
+    print(snapshot.data);
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
      return int.parse(documentSnapshot.data["numLinedUp"]);
   }
 
   static int getNumBeingCalled(AsyncSnapshot snapshot, int storeId){
-    DocumentSnapshot documentSnapshot = snapshot.data.document("$storeId").get();
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
     return int.parse(documentSnapshot.data["numBeingCalled"]);
   }
 
   static void incrementNumInQueue(AsyncSnapshot snapshot, int storeId){
-    DocumentSnapshot documentSnapshot = snapshot.data.documents("$storeId").get();
-    documentSnapshot.reference.updateData({"numLinedUp" : documentSnapshot.data["numLinedUp"] + 1});
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    documentSnapshot.reference.updateData({"numLinedUp" : "${int.parse(documentSnapshot.data["numLinedUp"]) + 1}"});
   }
 
   static void decrementNumInQueue(AsyncSnapshot snapshot, int storeId){
-    DocumentSnapshot documentSnapshot = snapshot.data.documents("$storeId").get();
-    documentSnapshot.reference.updateData({"numLinedUp" : documentSnapshot.data["numLinedUp"] - 1});
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    documentSnapshot.reference.updateData({"numLinedUp" : "${int.parse(documentSnapshot.data["numLinedUp"]) - 1}"});
   }
 
   static void incrementNumBeingCalled(AsyncSnapshot snapshot, int storeId){
-    DocumentSnapshot documentSnapshot = snapshot.data.documents("$storeId").get();
-    documentSnapshot.reference.updateData({"numBeingCalled" : documentSnapshot.data["numBeingCalled"] + 1});
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    documentSnapshot.reference.updateData({"numBeingCalled" : "${int.parse(documentSnapshot.data["numBeingCalled"]) + 1}"});
   }
 
   static void decrementNumBeingCalled(AsyncSnapshot snapshot, int storeId){
-    DocumentSnapshot documentSnapshot = snapshot.data.documents("$storeId").get();
-    documentSnapshot.reference.updateData({"numBeingCalled" : documentSnapshot.data["numBeingCalled"] - 1});
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    documentSnapshot.reference.updateData({"numBeingCalled" : "${int.parse(documentSnapshot.data["numBeingCalled"]) - 1}"});
   }
 }
