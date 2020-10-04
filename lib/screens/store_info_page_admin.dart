@@ -3,6 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_prep/models/store.dart';
 
+import '../stores_stored.dart';
+import '../stores_stored.dart';
+
+
 class StoreInfoPageAdmin extends StatelessWidget {
   final Store store;
 
@@ -49,6 +53,56 @@ class StoreInfoPageAdmin extends StatelessWidget {
                         fontSize: 20,
                         letterSpacing: 3,
                       ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child:Text("Total amount lined up: ${StoresStored.getNumInQueue(snapshot, this.store.id)}",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3,
+                      fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all (10),
+                    child: Text("Number being called:  ${StoresStored.getNumBeingCalled(snapshot, this.store.id)}",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3,
+                      fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  Container(
+                  padding: EdgeInsets.all(10),
+                  child: FloatingActionButton(
+                      child: Text("Increase number being called",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 3,
+                        fontSize: 20,
+                        ),
+                      ),
+                      onPressed: (){
+                        StoresStored.incrementNumBeingCalled(snapshot, this.store.id);
+                      },
+                    ),
+                  ),
+                  Container(
+                  padding: EdgeInsets.all(10),
+                  child: FloatingActionButton(
+                      child: Text("Decrease number being called",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 3,
+                        fontSize: 20,
+                        ),
+                      ),
+                      onPressed: (){
+                        StoresStored.decrementNumBeingCalled(snapshot, this.store.id);
+                      }
                     ),
                   ),
                 ],
