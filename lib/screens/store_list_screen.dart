@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_prep/screens/store_info_page_admin.dart';
@@ -6,7 +7,6 @@ import 'package:hackathon_prep/stores_stored.dart';
 import '../stores_stored.dart';
 
 class StoreListPage extends StatelessWidget {
-
   final bool isUser;
 
   StoreListPage(this.isUser);
@@ -21,41 +21,51 @@ class StoreListPage extends StatelessWidget {
           title: Text("Stores"),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: StoresStored.storesList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => (isUser) ? StoreInfoPageUser(
-                                    StoresStored.storesList[index]) : StoreInfoPageAdmin(
-                                    StoresStored.storesList[index])));
-                      },
-                      title: Column(children: <Widget>[
-                        Text(
-                          StoresStored.storesList[index].name,
-                          style: TextStyle(
-                            fontSize: 20,
+        body: StreamBuilder(
+          stream: Firestore.instance.collection("Queue").snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            return SingleChildScrollView(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: StoresStored.storesList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 1.0, horizontal: 4.0),
+                      child: Card(
+                        child: ListTile(
+                          onTap: () {
+                            print(index);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => (isUser)
+                                        ? StoreInfoPageUser(
+                                            StoresStored.storesList[index])
+                                        : StoreInfoPageAdmin(
+                                            StoresStored.storesList[index])));
+                          },
+                          title: Column(children: <Widget>[
+                            Text(
+                              StoresStored.storesList[index].name,
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                            Text(StoresStored.storesList[index].address,
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                ))
+                          ]),
+                          leading: CircleAvatar(
+                            child: Text("${StoresStored.getNumInQueue(snapshot, StoresStored.storesList[index].id)}"),
                           ),
                         ),
-                        Text(StoresStored.storesList[index].address,
-                            style: TextStyle(
-                              color: Colors.grey[500],
-                            ))
-                      ]),
-                      leading: CircleAvatar(),
-                    ),
-                  ),
-                );
-              }),
+                      ),
+                    );
+                  }),
+            );
+          },
         ));
   }
 }

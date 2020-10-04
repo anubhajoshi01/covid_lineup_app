@@ -48,20 +48,20 @@ class StoresStored {
   }
 
   static int getNumInQueue(AsyncSnapshot snapshot, int storeId) {
-    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId-1];
 
     return int.parse(documentSnapshot.data["numLinedUp"]);
   }
 
   static int getNumBeingCalled(AsyncSnapshot snapshot, int storeId) {
-    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId-1];
 
     return int.parse(documentSnapshot.data["numBeingCalled"]);
   }
 
   static void incrementNumInQueue(AsyncSnapshot snapshot, int storeId) {
     print(snapshot.data);
-    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId-1];
     documentSnapshot.reference.updateData({
       "numLinedUp": "${int.parse(documentSnapshot.data["numLinedUp"]) + 1}"
     });
@@ -69,7 +69,7 @@ class StoresStored {
 
   static void decrementNumInQueue(AsyncSnapshot snapshot, int storeId) {
     print(snapshot.data);
-    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId-1];
     documentSnapshot.reference.updateData({
       "numLinedUp": "${int.parse(documentSnapshot.data["numLinedUp"]) - 1}"
     });
@@ -77,7 +77,7 @@ class StoresStored {
 
   static void incrementNumBeingCalled(AsyncSnapshot snapshot, int storeId) {
     print(snapshot.data);
-    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId-1];
     documentSnapshot.reference.updateData({
       "numBeingCalled":
           "${int.parse(documentSnapshot.data["numBeingCalled"]) + 1}"
@@ -86,7 +86,7 @@ class StoresStored {
 
   static void decrementNumBeingCalled(AsyncSnapshot snapshot, int storeId) {
     print(snapshot.data);
-    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId];
+    DocumentSnapshot documentSnapshot = snapshot.data.documents[storeId-1];
     int numBeingCalled = int.parse(documentSnapshot.data["numBeingCalled"]) - 1;
     if (numBeingCalled > 0) {
       documentSnapshot.reference
