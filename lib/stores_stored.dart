@@ -44,7 +44,7 @@ class StoresStored{
   }
 
   static int getNumInQueue(AsyncSnapshot snapshot, int storeId) {
-     DocumentSnapshot documentSnapshot = snapshot.data.document("$storeId").get();
+    DocumentSnapshot documentSnapshot = snapshot.data.document("$storeId").get();
      return int.parse(documentSnapshot.data["numLinedUp"]);
   }
 
