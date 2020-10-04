@@ -10,8 +10,8 @@ import 'app.dart';
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-  await StoresStored.initDb();
   await Hive.initFlutter();
+  await StoresStored.initDb();
 
   runApp(MyApp());
 }
