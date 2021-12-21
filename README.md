@@ -1,6 +1,6 @@
 # hackathon_prep
 
-A new Flutter application.
+An app which allows you to queue up, or remove yourself from a queue for a store virtually. The queue number being called can be updated by a regulator at the store. This is a helpful way to minimize exposure at stores. 
 
 ## Getting Started
 
@@ -16,5 +16,5 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 Libraries Used:
-Hive
-Firebase Firestore
+Hive - as a local database
+Firebase Firestore - main backend 
